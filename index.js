@@ -21,7 +21,7 @@ async function run() {
 
       for (var i = 0; i < commits.data.length; i++) {        
         var commit = commits.data[i];
-
+        
         var prs = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
           owner: 'GrocerKey',
           repo: repo,
@@ -33,7 +33,10 @@ async function run() {
           }
         });
 
-        console.log(prs.data);
+        for (var j = 0; j < prs.data.length; j++) { 
+          var pr = prs.data[j];
+          console.log(pr.html_url);
+        }       
 
         if(commit.sha == startCommit)
             break;
