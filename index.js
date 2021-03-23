@@ -35,8 +35,10 @@ async function run() {
 
         for (var j = 0; j < prs.data.length; j++) { 
           var pr = prs.data[j];
+          console.log(pr)
           console.log(pr.html_url);
-        }       
+          console.log(pr.description);
+        }
 
         if(commit.sha == startCommit)
             break;
