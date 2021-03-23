@@ -19,6 +19,8 @@ async function run() {
         page: 1
       });
 
+      var prs = [];
+      
       for (var i = 0; i < commits.data.length; i++) {        
         var commit = commits.data[i];
         
@@ -33,25 +35,24 @@ async function run() {
           }
         });
 
-        console.log("****PR's Included in this Release*****")
-
         for (var j = 0; j < prs.data.length; j++) { 
-          var pr = prs.data[j];
-          console.log(pr.html_url);         
-        }
-
-        console.log("*****Stories Included in this Release*****")
-
-        for (var j = 0; j < prs.data.length; j++) { 
-          var pr = prs.data[j];
-          console.log(pr.body);       
-        }
-
-       
+          prs.push(prs.data[j])
+        }       
 
         if(commit.sha == startCommit)
             break;
       }
+
+      console.log("******* PRs in Release******")
+      prs.forEach(item => {
+          console.log(item.html_url);
+      });
+
+      console.log("*******Stories in Release******")
+      prs.forEach(item => {
+          console.log(item.body);
+      });
+
   }
   catch(err) {
     console.log(err);
