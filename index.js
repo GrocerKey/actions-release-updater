@@ -5,8 +5,12 @@ const { Octokit } = require("@octokit/rest");
 
 function extractURL(input) {
   var urlRegex = /(https?:\/\/[^ ]*)/;
-  var url = input.match(urlRegex)[1];
-  return url;
+  var url = input.match(urlRegex);
+  
+  if(url == null)
+    return null;
+    
+  return url[1];
 }
 
 async function run() {
