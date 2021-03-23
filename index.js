@@ -47,7 +47,13 @@ async function run() {
 
         for (var j = 0; j < prs.data.length; j++) { 
           var pr = prs.data[j];
-          var comments = await octokit.issue_comments("Grocerkey/" + repo, pr.number);
+          
+          var comments = await octokit.issues.listComments({
+            owner: "GrocerKey",
+            repo: repo,
+            issue_number : pr.number
+          });
+
           console.log(comments);
 
           for(var k = 0; k < comments.data.length; k++) {
