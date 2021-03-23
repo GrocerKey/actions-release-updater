@@ -9,17 +9,22 @@ async function run() {
   const endCommit = core.getInput('end-commit');
   const repo = core.getInput('repo');
 
-  var commits = await octokit.repos
-  .listCommits({
-    owner: "Grocerkey",
-    repo: repo,
-    sha: startCommit
-  });
+  try {
+      var commits = await octokit.repos
+      .listCommits({
+        owner: "Grocerkey",
+        repo: repo,
+        sha: startCommit
+      });
 
-  for (var i = 0; i < commits.length; i++) {
-    var commit = commits[i];
-    if(commit.sha == endCommit)
-         break;    
+      for (var i = 0; i < commits.length; i++) {
+        var commit = commits[i];
+        if(commit.sha == endCommit)
+            break;             
+      }
+  }
+  catch(err) {
+    console.log(err);
   }
 }
 
