@@ -15,7 +15,8 @@ async function run() {
       .listCommits({
         owner: "Grocerkey",
         repo: repo,
-        sha: startCommit
+        sha: endCommit,      
+        page: 1
       });
 
       console.log(commits);
@@ -23,8 +24,8 @@ async function run() {
       for (var i = 0; i < commits.length; i++) {
         var commit = commits[i];
         console.log(commit);
-        if(commit.sha == endCommit)
-            break;             
+        if(commit.sha == startCommit)
+            break;
       }
   }
   catch(err) {
