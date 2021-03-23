@@ -19,10 +19,10 @@ async function run() {
         page: 1
       });
 
-      console.log(commits);
+      console.log(commits.data);
 
-      for (var i = 0; i < commits.length; i++) {
-        var commit = commits[i];
+      for (var i = 0; i < commits.data.length; i++) {
+        var commit = commits.data[i];
         console.log(commit);
         if(commit.sha == startCommit)
             break;
