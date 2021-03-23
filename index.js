@@ -4,10 +4,11 @@ const { Octokit } = require("@octokit/rest");
 
 
 async function run() {
-  const octokit = new Octokit();
   const startCommit = core.getInput('start-commit');
   const endCommit = core.getInput('end-commit');
   const repo = core.getInput('repo');
+  const token = core.getInput('github-token');
+  const octokit = new Octokit({auth: token});  
 
   try {
       var commits = await octokit.repos
@@ -19,6 +20,7 @@ async function run() {
 
       for (var i = 0; i < commits.length; i++) {
         var commit = commits[i];
+        console.log(commit);
         if(commit.sha == endCommit)
             break;             
       }
