@@ -9,7 +9,7 @@ function extractURL(input) {
   
   if(url == null)
     return null;
-    
+
   return url[1];
 }
 
@@ -46,8 +46,13 @@ async function run() {
         });
 
         for (var j = 0; j < prs.data.length; j++) { 
+          var comments = await octokit.request('GET /repos/{owner}/{repo}/issues/comments', {
+            owner: 'GrocerKey',
+            repo: repo
+          });
+          console.log(comments.data);
           prList.push(prs.data[j])
-        }       
+        }
 
         if(commit.sha == startCommit)
             break;
