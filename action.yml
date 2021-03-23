@@ -1,0 +1,14 @@
+name: 'actions-release-updater'
+description: ''
+inputs:
+  github-token:
+    required: false
+    default: ''
+  start-commit:
+    required: false  
+  end-commit:
+    required: true
+    default: ''
+runs:
+  using: 'node12'
+  main: 'index.js'
