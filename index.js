@@ -19,7 +19,7 @@ async function run() {
   const token = core.getInput('github-token');
   const octokit = new Octokit({auth: token});
 
-  if(startCommit == null || endCommit == null) {
+  if(startCommit == '' || endCommit == '') {
       console.log("No Release information Found");
       return;
   }
