@@ -1,6 +1,9 @@
 name: 'actions-release-updater'
 description: ''
 inputs:
+  repo:
+    required: false
+    default: ''
   github-token:
     required: false
     default: ''
