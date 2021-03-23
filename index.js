@@ -3,6 +3,12 @@ const github = require('@actions/github');
 const { Octokit } = require("@octokit/rest");
 
 
+function extractURL(input) {
+  var urlRegex = /(https?:\/\/[^ ]*)/;
+  var url = input.match(urlRegex)[1];
+  return url;
+}
+
 async function run() {
   const startCommit = core.getInput('start-commit');
   const endCommit = core.getInput('end-commit');
@@ -50,7 +56,7 @@ async function run() {
 
       console.log("*******Stories in Release******")
       prList.forEach(item => {
-          console.log(item.body);
+          console.log(extractURL(item.body));
       });
 
   }
