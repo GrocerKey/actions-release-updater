@@ -16,14 +16,11 @@ async function run() {
     sha: startCommit
   });
 
-
-  commits.forEach(item => {
-
-      console.log(item); 
-
-      if(item.sha == endCommit)
-      break;
-  });
+  for (var i = 0; i < commits.length; i++) {
+    var commit = commits[i];
+    if(commit.sha == endCommit)
+         break;    
+  }
 }
 
 run();
