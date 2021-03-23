@@ -1,16 +1,15 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const { Octokit } = require("@octokit/rest");
-
+const urlRegexSafe = require('url-regex-safe');
 
 function extractURL(input) {
-  var urlRegex = /(https?:\/\/[^ ]*)/;
-  var url = input.match(urlRegex);
+  var url = input.match(urlRegexSafe());
   
-  if(url == null)
+  if(url.length == 0)
     return null;
 
-  return url[1];
+  return url[0];
 }
 
 async function run() {
@@ -53,8 +52,6 @@ async function run() {
             repo: repo,
             issue_number : pr.number
           });
-
-          console.log(comments);
 
           for(var k = 0; k < comments.data.length; k++) {
               var comment = comments.data[k];
