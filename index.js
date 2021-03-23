@@ -33,15 +33,14 @@ async function run() {
           }
         });
 
-        console.log("PR's Included in this Release")
+        console.log("****PR's Included in this Release*****")
 
         for (var j = 0; j < prs.data.length; j++) { 
           var pr = prs.data[j];
-          console.log(pr)
           console.log(pr.html_url);         
         }
 
-        console.log("Stories Included in this Release")
+        console.log("*****Stories Included in this Release*****")
 
         for (var j = 0; j < prs.data.length; j++) { 
           var pr = prs.data[j];
