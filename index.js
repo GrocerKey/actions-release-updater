@@ -33,7 +33,7 @@ async function run() {
           }
         });
 
-        console.log(prs);
+        console.log(prs.data);
 
         if(commit.sha == startCommit)
             break;
