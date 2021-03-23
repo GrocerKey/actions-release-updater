@@ -50,7 +50,15 @@ async function run() {
             owner: 'GrocerKey',
             repo: repo
           });
-          console.log(comments.data);
+
+          for(var k = 0; k < comments.data.length; k++) {
+              var comment = comments.data[k];
+              if(comment.user.login == "clubhouse[bot]") {
+                prs.data[j].storyLink = extractURL(comment.body)
+                break;
+              }
+          }
+
           prList.push(prs.data[j])
         }
 
@@ -65,7 +73,8 @@ async function run() {
 
       console.log("*******Stories in Release******")
       prList.forEach(item => {
-          console.log(extractURL(item.body));
+          if(item.storyLink != null)
+            console.log(item.storyLink);
       });
 
   }
