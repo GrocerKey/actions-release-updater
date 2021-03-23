@@ -53,6 +53,8 @@ async function run() {
             pull_number: pr.number
           });
 
+          console.log(comments.data);
+
           for(var k = 0; k < comments.data.length; k++) {
               var comment = comments.data[k];
               if(comment.user.login == "clubhouse[bot]") {
