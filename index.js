@@ -19,8 +19,8 @@ async function run() {
         page: 1
       });
 
-      var prs = [];
-      
+      var prList = [];
+
       for (var i = 0; i < commits.data.length; i++) {        
         var commit = commits.data[i];
         
@@ -36,7 +36,7 @@ async function run() {
         });
 
         for (var j = 0; j < prs.data.length; j++) { 
-          prs.push(prs.data[j])
+          prList.push(prs.data[j])
         }       
 
         if(commit.sha == startCommit)
@@ -44,12 +44,12 @@ async function run() {
       }
 
       console.log("******* PRs in Release******")
-      prs.forEach(item => {
+      prList.forEach(item => {
           console.log(item.html_url);
       });
 
       console.log("*******Stories in Release******")
-      prs.forEach(item => {
+      prList.forEach(item => {
           console.log(item.body);
       });
 
