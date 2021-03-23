@@ -8,7 +8,7 @@ async function run() {
   const endCommit = core.getInput('end-commit');
   const repo = core.getInput('repo');
   const token = core.getInput('github-token');
-  const octokit = new Octokit({auth: token});  
+  const octokit = new Octokit({auth: token});
 
   try {
       var commits = await octokit.repos
