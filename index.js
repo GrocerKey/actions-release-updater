@@ -18,6 +18,8 @@ async function run() {
         sha: startCommit
       });
 
+      console.log(commits);
+
       for (var i = 0; i < commits.length; i++) {
         var commit = commits[i];
         console.log(commit);
