@@ -50,7 +50,9 @@ async function run() {
           var comments = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/comments', {
             owner: 'GrocerKey',
             repo: repo,
-            pull_number: pr.number
+            pull_number: pr.number,
+            sort: 'created',
+            direction: 'asc'
           });
 
           console.log(comments.data);
