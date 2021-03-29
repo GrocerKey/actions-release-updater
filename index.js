@@ -32,6 +32,8 @@ async function run() {
         sha: endCommit,      
         page: 1
       });
+    
+     console.log(commits.data);
 
       var prList = [];
 
