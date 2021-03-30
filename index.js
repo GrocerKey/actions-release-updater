@@ -52,7 +52,15 @@ async function run() {
           }
         });
         
-        console.log(prs);
+         var test = await octokit.request('GET /repos/:owner/:repo/pulls/:pull_number/commits', {
+          owner: 'GrocerKey',
+          repo: repo,
+          pull_number: 165
+        });
+        
+        console.log(test);
+        
+        
 
         for (var j = 0; j < prs.data.length; j++) { 
           var pr = prs.data[j];
