@@ -12,7 +12,7 @@ function extractURL(input) {
   return url[0];
 }
 
-function extraPRNumber(input) {
+function extractPRNumber(input) {
   var prRegex = /(\d+)/;
   var prNumber = input.match(prRegex);
   
@@ -53,6 +53,9 @@ async function run() {
             break;
         
         var pull_number = extractPRNumber(commit.message);
+        
+        if(pull_number == null)
+          continue;
          
         var pr = octokit.rest.pulls.get({
           owner: "GrocerKey",
