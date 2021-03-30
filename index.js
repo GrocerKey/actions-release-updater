@@ -52,7 +52,9 @@ async function run() {
         if(commit.sha == startCommit)
             break;
         
-        var pull_number = extractPRNumber(commit.message);
+        console.log(commit);
+        
+        var pull_number = extractPRNumber(commit.body);
         
         if(pull_number == null)
           continue;
