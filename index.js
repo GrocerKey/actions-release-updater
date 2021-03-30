@@ -1,10 +1,10 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const { Octokit } = require("@octokit/rest");
-const urlRegexSafe = require('url-regex-safe');
 
 function extractURL(input) {
-  var url = input.match(urlRegexSafe());
+  var urlRegex = /(https?:\/\/[^ ]*)/;
+  var url = input.match(urlRegex);
   
   if(url.length == 0)
     return null;
