@@ -12,6 +12,17 @@ function extractURL(input) {
   return url[0];
 }
 
+function extraPRNumber(input) {
+  var prRegex = /(\d+)/;
+  var prNumber = input.match(prRegex);
+  
+  if(prNumber.length == 0)
+    return null;
+
+  return prNumber[0];
+  
+}
+
 async function run() {
   const startCommit = core.getInput('start-commit');
   const endCommit = core.getInput('end-commit');
@@ -41,47 +52,31 @@ async function run() {
         if(commit.sha == startCommit)
             break;
         
-        var prs = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
-          owner: 'GrocerKey',
+        var pull_number = extractPRNumber(commit.message);
+         
+        var pr = octokit.rest.pulls.get({
+          owner: "GrocerKey",
           repo: repo,
-          commit_sha: commit.sha,
-          mediaType: {
-            previews: [
-              'groot'
-            ]
-          }
+          pull_number,
         });
         
-         var test = await octokit.request('GET /repos/:owner/:repo/pulls/:pull_number/commits', {
-          owner: 'GrocerKey',
+        var comments = await octokit.issues.listComments({
+          owner: "GrocerKey",
           repo: repo,
-          pull_number: 165
+          issue_number : pr.number
         });
-        
-        console.log(test);
-        
-        
 
-        for (var j = 0; j < prs.data.length; j++) { 
-          var pr = prs.data[j];
-          
-          var comments = await octokit.issues.listComments({
-            owner: "GrocerKey",
-            repo: repo,
-            issue_number : pr.number
-          });
-
-          for(var k = 0; k < comments.data.length; k++) {
-              var comment = comments.data[k];
-              if(comment.user.login == "clubhouse[bot]") {
-                pr.storyLink = extractURL(comment.body)
-                break;
-              }
-          }
-
-          prList.push(prs.data[j])
+        for(var k = 0; k < comments.data.length; k++) {
+            var comment = comments.data[k];
+            if(comment.user.login == "clubhouse[bot]") {
+              pr.storyLink = extractURL(comment.body)
+              break;
+            }
         }
+
+        prList.push(prs.data[j])
       }
+      
 
       console.log("******* PRs in Release******")
       prList.forEach(item => {
