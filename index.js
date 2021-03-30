@@ -18,8 +18,6 @@ async function run() {
   const repo = core.getInput('repo');
   const token = core.getInput('github-token');
   const octokit = new Octokit({auth: token});
-  
-  console.log(github.context);
 
   if(startCommit == '' || endCommit == '') {
       console.log("No Release information Found");
@@ -34,6 +32,8 @@ async function run() {
         sha: endCommit,      
         page: 1
       });
+    
+     console.log(commits.data);
 
       var prList = [];
 
