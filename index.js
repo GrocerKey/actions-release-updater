@@ -57,7 +57,7 @@ async function run() {
         if(pull_number == null)
           continue;
          
-        var pr = octokit.rest.pulls.get({
+        var pr = await octokit.pulls.get({
           owner: "GrocerKey",
           repo: repo,
           pull_number,
