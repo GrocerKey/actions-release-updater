@@ -38,7 +38,7 @@ async function run() {
       for (var i = 0; i < commits.data.length; i++) {        
         var commit = commits.data[i];
         
-        var prs = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
+        var prs = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}', {
           owner: 'GrocerKey',
           repo: repo,
           commit_sha: commit.sha,
