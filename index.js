@@ -63,23 +63,21 @@ async function run() {
           pull_number,
         });
         
-        console.log(pr);
-        
         var comments = await octokit.issues.listComments({
           owner: "GrocerKey",
           repo: repo,
-          issue_number : pr.number
+          issue_number : pr.data.number
         });
 
         for(var k = 0; k < comments.data.length; k++) {
             var comment = comments.data[k];
             if(comment.user.login == "clubhouse[bot]") {
-              pr.storyLink = extractURL(comment.body)
+              pr.data.storyLink = extractURL(comment.body)
               break;
             }
         }
 
-        prList.push(prs.data[j])
+        prList.push(pr.data)
       }
       
 
