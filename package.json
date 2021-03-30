@@ -9,7 +9,6 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
-    "@octokit/rest": "18.3.5",
-    "url-regex-safe": "^2.0.2"
+    "@octokit/rest": "18.3.5"
   }
 }
