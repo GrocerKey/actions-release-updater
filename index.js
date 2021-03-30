@@ -63,6 +63,8 @@ async function run() {
           pull_number,
         });
         
+        console.log(pr);
+        
         var comments = await octokit.issues.listComments({
           owner: "GrocerKey",
           repo: repo,
