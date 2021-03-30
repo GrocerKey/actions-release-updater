@@ -3,7 +3,7 @@ const github = require('@actions/github');
 const { Octokit } = require("@octokit/rest");
 
 function extractURL(input) {
-  var urlRegex = /(https?:\/\/[^ ]*/;
+  var urlRegex = /(https?:\/\/[^ ][^)]+)/;
   var url = input.match(urlRegex);
   
   if(url.length == 0)
