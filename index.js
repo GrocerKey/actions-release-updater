@@ -32,8 +32,6 @@ async function run() {
         sha: endCommit,      
         page: 1
       });
-    
-     console.log(commits.data);
 
       var prList = [];
 
@@ -50,6 +48,8 @@ async function run() {
             ]
           }
         });
+        
+        console.log(prs);
 
         for (var j = 0; j < prs.data.length; j++) { 
           var pr = prs.data[j];
