@@ -38,7 +38,10 @@ async function run() {
       for (var i = 0; i < commits.data.length; i++) {        
         var commit = commits.data[i];
         
-        var prs = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}', {
+        if(commit.sha == startCommit)
+            break;
+        
+        var prs = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
           owner: 'GrocerKey',
           repo: repo,
           commit_sha: commit.sha,
@@ -70,9 +73,6 @@ async function run() {
 
           prList.push(prs.data[j])
         }
-
-        if(commit.sha == startCommit)
-            break;
       }
 
       console.log("******* PRs in Release******")
