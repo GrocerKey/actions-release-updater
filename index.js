@@ -25,13 +25,21 @@ function extractPRNumber(input) {
 }
 
 async function postToSlack(prList) {
+  const environment = core.getInput('environment');
   var slackToken = core.getInput('slack-token');
   if(slackToken == '')
       return;
 
   const slackClient = new WebClient(slackToken);
+
+  var botMessage = `New Release For ${environment}`;
+  
+  prList.forEach(item => { 
+    botMessage += '\n ' + item.storyLink
+  });
+
   const result = await slackClient.chat.postMessage({
-    text: 'Testing...',
+    text: botMessage,
     channel: 'releases',
   });
 }
