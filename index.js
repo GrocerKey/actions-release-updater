@@ -16,7 +16,7 @@ function extractPRNumber(input) {
   var prRegex = /(\d+)/;
   var prNumber = input.match(prRegex);
   
-  if(prNumber.length == 0)
+  if(prNumber == null || prNumber.length == 0)
     return null;
 
   return prNumber[0];
@@ -36,25 +36,14 @@ async function run() {
   }
 
   try {
-      var commits = await octokit.repos
-      .listCommits({
-        owner: "Grocerkey",
-        repo: repo,
-        sha: endCommit,      
-        page: 1
-      });
     
-      var test = await octokit.repos.compareCommits({
+      var commits = await octokit.repos.compareCommits({
         owner: "Grocerkey",
         repo: repo,
         head: endCommit,
         base: startCommit,
-      });
+      });  
     
-      console.log(test.data);
-    
-    
-
       var prList = [];
 
       for (var i = 0; i < commits.data.length; i++) {        
