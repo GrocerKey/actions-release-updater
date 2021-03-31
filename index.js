@@ -40,11 +40,11 @@ async function run() {
       var commits = await octokit.repos.compareCommits({
         owner: "Grocerkey",
         repo: repo,
-        head:startCommit ,
-        base:endCommit ,
-      });  
+        head:endCommit ,
+        base:startCommit ,
+      });
     
-      console.log(commits.data);
+      console.log(commits.data.commits);
     
       var prList = [];
 
