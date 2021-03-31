@@ -43,6 +43,17 @@ async function run() {
         sha: endCommit,      
         page: 1
       });
+    
+      var test = await octokit.rest.repos.compareCommits({
+        owner: "Grocerkey",
+        repo: repo,
+        startCommit,
+        endCommit,
+      });
+    
+      console.log("test");
+    
+    
 
       var prList = [];
 
