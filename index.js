@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const { Octokit } = require("@octokit/rest");
+const { WebClient } = require('@slack/web-api');
 
 function extractURL(input) {
   var urlRegex = /(https?:\/\/[^ ][^)]+)/;
@@ -23,12 +24,22 @@ function extractPRNumber(input) {
   
 }
 
+async function postToSlack(prList) {
+
+  const result = await web.chat.postMessage({
+    text: 'Testing...',
+    channel: 'releases',
+  });
+}
+
 async function run() {
   const startCommit = core.getInput('start-commit');
   const endCommit = core.getInput('end-commit');
   const repo = core.getInput('repo');
   const token = core.getInput('github-token');
   const octokit = new Octokit({auth: token});
+  const slackClient = new WebClient(core.getInput('slackToken'));
+
 
   if(startCommit == '' || endCommit == '') {
       console.log("No Release information Found");
@@ -91,6 +102,8 @@ async function run() {
           if(item.storyLink != null)
             console.log(item.storyLink);
       });
+
+      postToSlack(prList);
 
   }
   catch(err) {

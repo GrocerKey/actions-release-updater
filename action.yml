@@ -1,6 +1,8 @@
 name: 'actions-release-updater'
 description: ''
 inputs:
+  slack-token:
+    required: false
   repo:
     required: false
     default: ''
