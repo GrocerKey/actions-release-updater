@@ -48,8 +48,8 @@ async function run() {
     
       var prList = [];
 
-      for (var i = 0; i < commits.data.length; i++) {        
-        var commit = commits.data[i];
+      for (var i = 0; i < commits.data.commits.length; i++) {        
+        var commit = commits.data.commits[i];
         
         if(commit.sha == startCommit)
             break;
