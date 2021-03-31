@@ -16,12 +16,12 @@ function extractPRNumber(input) {
   var prRegex = /\(#(\d+)\)/;
   var prNumber = input.match(prRegex);
   
-  console.log(prNumber + " " + input);
+  console.log(prNumber[1] + " " + input);
   
   if(prNumber == null || prNumber.length == 0)
     return null;
 
-  return prNumber[0];
+  return prNumber[1];
   
 }
 
