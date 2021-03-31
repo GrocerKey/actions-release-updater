@@ -28,8 +28,8 @@ async function postToSlack(prList) {
   var slackToken = core.getInput('slack-token');
   if(slackToken == '')
       return;
-      
-  const slackClient = new WebClient(core.getInput('slack-token'));
+
+  const slackClient = new WebClient(slackToken);
   const result = await slackClient.chat.postMessage({
     text: 'Testing...',
     channel: 'releases',
@@ -106,7 +106,7 @@ async function run() {
             console.log(item.storyLink);
       });
 
-      postToSlack(prList);
+      await postToSlack(prList);
 
   }
   catch(err) {
