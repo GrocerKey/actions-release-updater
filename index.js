@@ -44,6 +44,8 @@ async function run() {
         base: startCommit,
       });  
     
+      console.log(commits.data);
+    
       var prList = [];
 
       for (var i = 0; i < commits.data.length; i++) {        
