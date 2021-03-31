@@ -25,8 +25,12 @@ function extractPRNumber(input) {
 }
 
 async function postToSlack(prList) {
-
-  const result = await web.chat.postMessage({
+  var slackToken = core.getInput('slack-token');
+  if(slackToken == '')
+      return;
+      
+  const slackClient = new WebClient(core.getInput('slack-token'));
+  const result = await slackClient.chat.postMessage({
     text: 'Testing...',
     channel: 'releases',
   });
@@ -38,7 +42,6 @@ async function run() {
   const repo = core.getInput('repo');
   const token = core.getInput('github-token');
   const octokit = new Octokit({auth: token});
-  const slackClient = new WebClient(core.getInput('slackToken'));
 
 
   if(startCommit == '' || endCommit == '') {
