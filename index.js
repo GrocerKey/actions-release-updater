@@ -47,8 +47,8 @@ async function run() {
       var test = await octokit.repos.compareCommits({
         owner: "Grocerkey",
         repo: repo,
-        head: startCommit,
-        base: endCommit,
+        head: endCommit,
+        base: startCommit,
       });
     
       console.log(test.data);
