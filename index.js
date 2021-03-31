@@ -13,7 +13,7 @@ function extractURL(input) {
 }
 
 function extractPRNumber(input) {
-  var prRegex = /(\(\d+\))/;
+  var prRegex = /(\\(\d+\\))/;
   var prNumber = input.match(prRegex);
   
   console.log(prNumber + " " + input);
