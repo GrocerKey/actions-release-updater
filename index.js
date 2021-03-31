@@ -16,6 +16,8 @@ function extractPRNumber(input) {
   var prRegex = /(\d+)/;
   var prNumber = input.match(prRegex);
   
+  console.log(prNumber + " " + input);
+  
   if(prNumber == null || prNumber.length == 0)
     return null;
 
@@ -43,8 +45,6 @@ async function run() {
         head:endCommit ,
         base:startCommit ,
       });
-    
-      console.log(commits.data.commits);
     
       var prList = [];
 
