@@ -51,7 +51,7 @@ async function run() {
         base: endCommit,
       });
     
-      console.log("test");
+      console.log(test.data);
     
     
 
